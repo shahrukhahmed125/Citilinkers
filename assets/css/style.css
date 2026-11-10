@@ -1,0 +1,272 @@
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --citilinkers-navy: #041F38;
+    --citilinkers-navy-light: #0A3258;
+    --citilinkers-accent: #0080FF;
+    --citilinkers-gold: #D4AF37;
+    --citilinkers-bg-light: #F8FAFC;
+    --citilinkers-text-dark: #0F172A;
+    --citilinkers-text-muted: #64748B;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--citilinkers-text-dark);
+    background-color: #ffffff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Custom Cursor Styles */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #041F38;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+}
+
+.custom-cursor-circle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(4, 31, 56, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease-out, width 0.25s ease, height 0.25s ease, border-color 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cursor-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+/* Custom Cursor Hover States */
+.cursor-hover .custom-cursor-circle {
+  width: 54px;
+  height: 54px;
+  background-color: rgba(4, 31, 56, 0.85);
+  border-color: #041F38;
+  backdrop-filter: blur(4px);
+}
+
+.cursor-hover .custom-cursor-dot {
+  opacity: 0;
+}
+
+.cursor-hover .custom-cursor-label {
+  opacity: 1;
+}
+
+.cursor-pointer-hover .custom-cursor-circle {
+  width: 48px;
+  height: 48px;
+  border-color: #041F38;
+  background-color: rgba(4, 31, 56, 0.1);
+}
+
+/* Swiper Custom Navigation & Pagination */
+.swiper-button-next-custom,
+.swiper-button-prev-custom {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(4, 31, 56, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 40 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.swiper-button-next-custom:hover,
+.swiper-button-prev-custom:hover {
+  background: #041F38;
+  border-color: #ffffff;
+  transform: translateY(-50%) scale(1.12) !important;
+  box-shadow: 0 12px 32px rgba(4, 31, 56, 0.6);
+}
+
+.swiper-pagination-bullet-custom {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  display: inline-block;
+  margin: 0 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-custom-active {
+  width: 32px;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+/* Smooth Navbar Glass Effect */
+.nav-header {
+  transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -2px rgba(4, 31, 56, 0.08);
+  border-bottom: 1px solid rgba(4, 31, 56, 0.08);
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+.nav-header.scrolled .nav-link {
+  color: #041F38 !important;
+}
+
+.nav-header.scrolled .nav-brand-text {
+  color: #041F38 !important;
+}
+
+.nav-header.scrolled .nav-sub-text {
+  color: #64748B !important;
+}
+
+/* Nav Link Animated Underline */
+.nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #041F38;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-header:not(.scrolled) .nav-link::after {
+  background-color: #ffffff;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Booking Card & Form Styling */
+.booking-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.5rem;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  font-size: 0.925rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.booking-input:focus {
+  outline: none;
+  border-color: #041F38;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(4, 31, 56, 0.1);
+}
+
+.booking-input-icon-wrapper {
+  position: relative;
+}
+
+.booking-input-icon-wrapper i,
+.booking-input-icon-wrapper svg {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748B;
+  pointer-events: none;
+}
+
+.booking-input-with-icon {
+  padding-left: 2.75rem;
+}
+
+/* Vehicle Selection Card */
+.vehicle-card {
+  border: 1.5px solid #E2E8F0;
+  border-radius: 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.vehicle-card:hover,
+.vehicle-card.selected {
+  border-color: #041F38;
+  box-shadow: 0 10px 25px -5px rgba(4, 31, 56, 0.12);
+  transform: translateY(-2px);
+}
+
+.vehicle-card.selected {
+  background-color: rgba(4, 31, 56, 0.02);
+}
+
+/* Subtle Shimmer Animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #041F38;
+}

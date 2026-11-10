@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account & Booking Dashboard | Citilinkers (Noharc Ltd)</title>
+    <meta name="description" content="Access your Citilinkers customer portal. View upcoming executive transfers, download booking vouchers, and manage profile preferences." />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body class="bg-white text-slate-900 selection:bg-[#041F38] selection:text-white">
+
+    <!-- HEADER -->
+    <header class="nav-header fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-5 transition-all duration-300 border-b border-white/10">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
+        <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+          <div class="w-10 h-10 rounded-lg bg-[#041F38] flex items-center justify-center text-white border border-white/20 shadow-md">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+          </div>
+          <div>
+            <span class="nav-brand-text text-xl font-extrabold tracking-tight text-white block leading-none">CITILINKERS</span>
+            <span class="nav-sub-text text-[10px] font-semibold tracking-widest text-slate-300 uppercase block mt-1">Noharc Ltd</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-white/90">
+          <a href="index.html" class="nav-link text-white/90 hover:text-white">Home</a>
+          <a href="about.html" class="nav-link text-white/90 hover:text-white">About Us</a>
+          <a href="services.html" class="nav-link text-white/90 hover:text-white">Services</a>
+          <a href="faq.html" class="nav-link text-white/90 hover:text-white">FAQ</a>
+          <a href="blog.html" class="nav-link text-white/90 hover:text-white">Blog</a>
+          <a href="contact.html" class="nav-link text-white/90 hover:text-white">Contact</a>
+          <a href="account.html" class="nav-link text-white active hover:text-white flex items-center gap-1.5"><i class="fa-regular fa-user text-xs"></i> Account</a>
+        </nav>
+
+        <div class="flex items-center gap-4 shrink-0">
+          <a href="index.html#booking" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-[#041F38] text-white text-xs font-extrabold tracking-wider uppercase rounded-lg shadow-md hover:bg-slate-800">
+            <span>Book Now</span>
+          </a>
+          <button type="button" aria-label="Toggle mobile menu" class="mobile-menu-toggle lg:hidden p-2 text-white">
+            <i class="fa-solid fa-bars-staggered text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-backdrop fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity"></div>
+    <aside class="mobile-menu-drawer fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[#041F38] text-white z-50 transform translate-x-full transition-transform p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-slate-700">
+          <span class="font-extrabold tracking-tight text-lg">CITILINKERS</span>
+          <button type="button" aria-label="Close menu" class="mobile-menu-close p-2 text-slate-300"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+        <nav class="flex flex-col gap-4 py-8 text-base font-medium">
+          <a href="index.html" class="py-2 border-b border-slate-800/60 text-slate-300">Home</a>
+          <a href="about.html" class="py-2 border-b border-slate-800/60 text-slate-300">About Us</a>
+          <a href="services.html" class="py-2 border-b border-slate-800/60 text-slate-300">Services</a>
+          <a href="faq.html" class="py-2 border-b border-slate-800/60 text-slate-300">FAQ</a>
+          <a href="blog.html" class="py-2 border-b border-slate-800/60 text-slate-300">Blog</a>
+          <a href="contact.html" class="py-2 border-b border-slate-800/60 text-slate-300">Contact</a>
+          <a href="account.html" class="py-2 text-white font-bold">My Account</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- HERO -->
+    <section class="relative bg-[#041F38] text-white pt-36 pb-20 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 text-center">
+        <span class="text-xs font-bold text-slate-300 uppercase tracking-widest block mb-2">Customer Portal</span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-2">My Account & Bookings</h1>
+        <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+          Manage your executive airport transfers, download VAT receipts and update profile preferences.
+        </p>
+      </div>
+    </section>
+
+    <!-- AUTHENTICATION & DASHBOARD SECTION -->
+    <section class="py-20 bg-slate-50 min-h-[60vh]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-8">
+        
+        <!-- Tab Switcher for Sign In vs Register vs Dashboard View -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          
+          <!-- Column 1: Auth Card -->
+          <div class="lg:col-span-1 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl h-fit">
+            
+            <div class="flex border-b border-slate-200 mb-6">
+              <button id="tab-auth-login" type="button" class="pb-3 px-4 text-xs font-extrabold uppercase border-b-2 border-[#041F38] text-[#041F38] transition-colors w-1/2">
+                Sign In
+              </button>
+              <button id="tab-auth-register" type="button" class="pb-3 px-4 text-xs font-extrabold uppercase border-b-2 border-transparent text-slate-500 hover:text-[#041F38] transition-colors w-1/2">
+                Register
+              </button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="form-auth-login" class="space-y-4" onsubmit="event.preventDefault(); alert('Demo Account Signed In Successfully');">
+              <div>
+                <label for="l-email" class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address</label>
+                <input type="email" id="l-email" value="executive@citilinkers.com" class="booking-input text-xs" required />
+              </div>
+
+              <div>
+                <label for="l-pass" class="block text-xs font-bold text-slate-700 uppercase mb-1">Password</label>
+                <input type="password" id="l-pass" value="••••••••••••" class="booking-input text-xs" required />
+              </div>
+
+              <div class="flex items-center justify-between text-xs pt-1">
+                <label class="flex items-center gap-1.5 text-slate-600 font-medium">
+                  <input type="checkbox" checked class="rounded border-slate-300 text-[#041F38]" /> Remember
+                </label>
+                <a href="#" onclick="alert('Password reset instructions sent to your email.'); return false;" class="text-[#041F38] font-bold hover:underline">Forgot?</a>
+              </div>
+
+              <button type="submit" class="w-full py-3 bg-[#041F38] text-white text-xs font-bold uppercase rounded-lg shadow hover:bg-slate-800 transition-colors">
+                Access Account
+              </button>
+            </form>
+
+            <!-- Register Form (Hidden by default) -->
+            <form id="form-auth-register" class="space-y-4 hidden" onsubmit="event.preventDefault(); alert('Account Created Successfully!');">
+              <div>
+                <label for="r-name" class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
+                <input type="text" id="r-name" placeholder="John Smith" class="booking-input text-xs" required />
+              </div>
+
+              <div>
+                <label for="r-email" class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address</label>
+                <input type="email" id="r-email" placeholder="name@domain.com" class="booking-input text-xs" required />
+              </div>
+
+              <div>
+                <label for="r-pass" class="block text-xs font-bold text-slate-700 uppercase mb-1">Create Password</label>
+                <input type="password" id="r-pass" placeholder="••••••••••••" class="booking-input text-xs" required />
+              </div>
+
+              <button type="submit" class="w-full py-3 bg-[#041F38] text-white text-xs font-bold uppercase rounded-lg shadow hover:bg-slate-800 transition-colors">
+                Create Executive Account
+              </button>
+            </form>
+
+            <div class="pt-6 border-t border-slate-100 mt-6 text-center text-[11px] text-slate-400">
+              Note: Connected to secure Noharc Ltd dispatch backend for real-time voucher retrieval.
+            </div>
+
+          </div>
+
+          <!-- Column 2 & 3: Live Customer Booking Dashboard -->
+          <div class="lg:col-span-2 space-y-6">
+            
+            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl">
+              
+              <div class="flex items-center justify-between pb-6 border-b border-slate-100 mb-6">
+                <div>
+                  <h3 class="text-xl font-extrabold text-[#041F38]">Booking History & Vouchers</h3>
+                  <p class="text-xs text-slate-500">Account: executive@citilinkers.com</p>
+                </div>
+                <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-md">
+                  Active Member
+                </span>
+              </div>
+
+              <!-- Dashboard Items List -->
+              <div class="space-y-4">
+                
+                <!-- Booking 1 -->
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-mono font-black text-white bg-[#041F38] px-2 py-0.5 rounded">CTL-892410</span>
+                      <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Confirmed</span>
+                    </div>
+                    <h4 class="text-sm font-extrabold text-[#041F38]">London Heathrow (LHR) → Mayfair, Central London</h4>
+                    <p class="text-xs text-slate-500">Vehicle: Executive Saloon (Mercedes S-Class) • 2 Passengers</p>
+                    <p class="text-xs text-slate-400">Date: Tomorrow at 10:00 AM • Flight BA284</p>
+                  </div>
+                  <div class="text-right flex sm:flex-col items-center sm:items-end justify-between gap-2 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-200">
+                    <span class="text-base font-black text-[#041F38]">£95.00</span>
+                    <button type="button" onclick="alert('Downloading PDF Booking Voucher CTL-892410...');" class="px-3 py-1.5 bg-[#041F38] text-white text-[10px] font-bold uppercase rounded hover:bg-slate-800">
+                      Download Voucher
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Booking 2 -->
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-mono font-black text-white bg-slate-700 px-2 py-0.5 rounded">CTL-774019</span>
+                      <span class="text-xs font-bold text-slate-600 bg-slate-200 px-2 py-0.5 rounded">Completed</span>
+                    </div>
+                    <h4 class="text-sm font-extrabold text-[#041F38]">Gatwick Airport (LGW) → Cambridge City Centre</h4>
+                    <p class="text-xs text-slate-500">Vehicle: Executive VIP MPV (Mercedes V-Class) • 6 Passengers</p>
+                    <p class="text-xs text-slate-400">Date: 14 Feb 2026 at 18:30 PM</p>
+                  </div>
+                  <div class="text-right flex sm:flex-col items-center sm:items-end justify-between gap-2 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-200">
+                    <span class="text-base font-black text-[#041F38]">£185.00</span>
+                    <button type="button" onclick="alert('Downloading Receipt CTL-774019...');" class="px-3 py-1.5 bg-slate-200 text-slate-800 text-[10px] font-bold uppercase rounded hover:bg-slate-300">
+                      VAT Receipt
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                <a href="index.html#booking" class="px-5 py-2.5 bg-[#041F38] text-white text-xs font-bold uppercase rounded-lg shadow hover:bg-slate-800">
+                  + Book New Transfer
+                </a>
+                <span class="text-xs text-slate-500 font-medium">Need dispatch help? Call +44 20 8000 7788</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center text-xs text-slate-500 space-y-4">
+        <p class="text-sm font-bold text-white">CITILINKERS (Noharc Ltd)</p>
+        <p>© 2026 Citilinkers (Noharc Ltd). All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

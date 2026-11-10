@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frequently Asked Questions | Citilinkers (Noharc Ltd)</title>
+    <meta name="description" content="Find answers to common questions regarding Citilinkers airport transfers, booking changes, payment methods, vehicle amenities, and cancellation policies." />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body class="bg-white text-slate-900 selection:bg-[#041F38] selection:text-white">
+
+    <!-- HEADER -->
+    <header class="nav-header fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-5 transition-all duration-300 border-b border-white/10">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
+        <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+          <div class="w-10 h-10 rounded-lg bg-[#041F38] flex items-center justify-center text-white border border-white/20 shadow-md">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+          </div>
+          <div>
+            <span class="nav-brand-text text-xl font-extrabold tracking-tight text-white block leading-none">CITILINKERS</span>
+            <span class="nav-sub-text text-[10px] font-semibold tracking-widest text-slate-300 uppercase block mt-1">Noharc Ltd</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-white/90">
+          <a href="index.html" class="nav-link text-white/90 hover:text-white">Home</a>
+          <a href="about.html" class="nav-link text-white/90 hover:text-white">About Us</a>
+          <a href="services.html" class="nav-link text-white/90 hover:text-white">Services</a>
+          <a href="faq.html" class="nav-link text-white active hover:text-white">FAQ</a>
+          <a href="blog.html" class="nav-link text-white/90 hover:text-white">Blog</a>
+          <a href="contact.html" class="nav-link text-white/90 hover:text-white">Contact</a>
+          <a href="account.html" class="nav-link text-white/90 hover:text-white flex items-center gap-1.5"><i class="fa-regular fa-user text-xs"></i> Account</a>
+        </nav>
+
+        <div class="flex items-center gap-4 shrink-0">
+          <a href="index.html#booking" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-[#041F38] text-white text-xs font-extrabold tracking-wider uppercase rounded-lg shadow-md hover:bg-slate-800">
+            <span>Book Now</span>
+          </a>
+          <button type="button" aria-label="Toggle mobile menu" class="mobile-menu-toggle lg:hidden p-2 text-white">
+            <i class="fa-solid fa-bars-staggered text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-backdrop fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity"></div>
+    <aside class="mobile-menu-drawer fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[#041F38] text-white z-50 transform translate-x-full transition-transform p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-slate-700">
+          <span class="font-extrabold tracking-tight text-lg">CITILINKERS</span>
+          <button type="button" aria-label="Close menu" class="mobile-menu-close p-2 text-slate-300"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+        <nav class="flex flex-col gap-4 py-8 text-base font-medium">
+          <a href="index.html" class="py-2 border-b border-slate-800/60 text-slate-300">Home</a>
+          <a href="about.html" class="py-2 border-b border-slate-800/60 text-slate-300">About Us</a>
+          <a href="services.html" class="py-2 border-b border-slate-800/60 text-slate-300">Services</a>
+          <a href="faq.html" class="py-2 border-b border-slate-800/60 text-white font-bold">FAQ</a>
+          <a href="blog.html" class="py-2 border-b border-slate-800/60 text-slate-300">Blog</a>
+          <a href="contact.html" class="py-2 border-b border-slate-800/60 text-slate-300">Contact</a>
+          <a href="account.html" class="py-2 text-slate-300">My Account</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- HERO -->
+    <section class="relative bg-[#041F38] text-white pt-36 pb-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 text-center">
+        <span class="text-xs font-bold text-slate-300 uppercase tracking-widest block mb-2">Help Center</span>
+        <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-4">Frequently Asked Questions</h1>
+        <p class="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto">
+          Everything you need to know about booking, airport pick-ups, vehicle options and payment methods.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ ACCORDION CATEGORIES -->
+    <section class="py-24 bg-slate-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-8 space-y-12">
+        
+        <!-- Category 1: Booking & Fare Questions -->
+        <div>
+          <h3 class="text-xl font-extrabold text-[#041F38] mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-[#041F38]"></i> Booking & Fares
+          </h3>
+          <div class="space-y-3 faq-container">
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <button type="button" class="faq-accordion-header w-full p-5 text-left flex items-center justify-between font-bold text-[#041F38] hover:bg-slate-50">
+                <span>How do I book a taxi or executive airport transfer?</span>
+                <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+              </button>
+              <div class="faq-accordion-content hidden p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Use our online fare calculator on the homepage. Input your pick-up point, destination, date and time to choose your vehicle category and receive a guaranteed quote.
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <button type="button" class="faq-accordion-header w-full p-5 text-left flex items-center justify-between font-bold text-[#041F38] hover:bg-slate-50">
+                <span>Are prices fixed or metered?</span>
+                <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+              </button>
+              <div class="faq-accordion-content hidden p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                All Citilinkers quotes are 100% fixed guaranteed prices. Toll fees and airport drop-off zone charges are transparently calculated upfront with no surge pricing.
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <button type="button" class="faq-accordion-header w-full p-5 text-left flex items-center justify-between font-bold text-[#041F38] hover:bg-slate-50">
+                <span>How can I amend or cancel my booking?</span>
+                <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+              </button>
+              <div class="faq-accordion-content hidden p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                You can amend your travel date, time, or passenger details up to 12 hours prior to dispatch by logging into your My Account portal or contacting our 24/7 dispatch desk.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Airport Pickup & Flight Tracking -->
+        <div>
+          <h3 class="text-xl font-extrabold text-[#041F38] mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-plane-arrival text-[#041F38]"></i> Airport Pickup & Flight Delays
+          </h3>
+          <div class="space-y-3 faq-container">
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <button type="button" class="faq-accordion-header w-full p-5 text-left flex items-center justify-between font-bold text-[#041F38] hover:bg-slate-50">
+                <span>Where will I meet my chauffeur at the airport terminal?</span>
+                <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+              </button>
+              <div class="faq-accordion-content hidden p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Your driver will be waiting in the arrivals hall immediately after passport control and baggage claim holding a prominent sign with your name or company title.
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <button type="button" class="faq-accordion-header w-full p-5 text-left flex items-center justify-between font-bold text-[#041F38] hover:bg-slate-50">
+                <span>What if my flight gets delayed?</span>
+                <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+              </button>
+              <div class="faq-accordion-content hidden p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                When you supply your flight number during booking, our dispatch radar tracks your aircraft in real time. Driver dispatch times are automatically adjusted to match your actual landing time at no extra fee.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Payments & Vehicles -->
+        <div>
+          <h3 class="text-xl font-extrabold text-[#041F38] mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-credit-card text-[#041F38]"></i> Payment & Fleet
+          </h3>
+          <div class="space-y-3 faq-container">
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <button type="button" class="faq-accordion-header w-full p-5 text-left flex items-center justify-between font-bold text-[#041F38] hover:bg-slate-50">
+                <span>What payment methods are accepted?</span>
+                <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+              </button>
+              <div class="faq-accordion-content hidden p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                We accept major debit and credit cards (Visa, Mastercard, American Express) as well as direct corporate invoicing for corporate account holders.
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <button type="button" class="faq-accordion-header w-full p-5 text-left flex items-center justify-between font-bold text-[#041F38] hover:bg-slate-50">
+                <span>Are child seats available?</span>
+                <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+              </button>
+              <div class="faq-accordion-content hidden p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Yes, child and booster seats are available upon request during the booking process for all family transfers.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center text-xs text-slate-500 space-y-4">
+        <p class="text-sm font-bold text-white">CITILINKERS (Noharc Ltd)</p>
+        <p>© 2026 Citilinkers (Noharc Ltd). All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
