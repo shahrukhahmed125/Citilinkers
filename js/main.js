@@ -257,14 +257,6 @@ function initGSAPAnimations() {
 /* ----------------------------------------------------
    6. ADVANCED BOOKING ENGINE
 ---------------------------------------------------- */
-const VEHICLES_DATA = [
-  { id: 'saloon', name: 'Standard Saloon', desc: 'Sleek & reliable sedan for everyday transfers', passengers: 4, luggage: 2, baseFare: 65, perMile: 2.20, img: 'assets/images/fleet_exec_saloon_1793814068663.jpg' },
-  { id: 'exec_saloon', name: 'Executive Saloon', desc: 'Mercedes S-Class / E-Class premier executive luxury', passengers: 4, luggage: 3, baseFare: 95, perMile: 3.10, img: 'assets/images/2.jpg' },
-  { id: 'exec_estate', name: 'Executive Estate', desc: 'Mercedes E-Class Estate with spacious luggage capacity', passengers: 4, luggage: 4, baseFare: 110, perMile: 3.40, img: 'assets/images/hero_airport_luggage_1793814068773.jpg' },
-  { id: 'mpv', name: 'MPV Transporter', desc: 'Spacious 6-seater for families and small corporate groups', passengers: 6, luggage: 6, baseFare: 130, perMile: 3.80, img: 'assets/images/fleet_exec_mpv_1793814069276.jpg' },
-  { id: 'exec_mpv', name: 'Executive MPV', desc: 'Mercedes V-Class 8-seater VIP luxury shuttle', passengers: 8, luggage: 8, baseFare: 160, perMile: 4.50, img: 'assets/images/1.jpg' }
-];
-
 const AIRPORT_DISTANCES = {
   'London Heathrow (LHR)': { 'Central London / Mayfair': 18, 'Canary Wharf': 23, 'Cambridge': 68, 'Oxford': 48, 'Brighton': 62 },
   'London Gatwick (LGW)': { 'Central London / Mayfair': 29, 'Canary Wharf': 31, 'Cambridge': 85, 'Oxford': 82, 'Brighton': 28 },
@@ -299,11 +291,12 @@ function initBookingEngine() {
   const formContainer = document.querySelector('#booking-engine');
   if (!formContainer) return;
 
-  // Render initial booking steps
+  // Initialize booking controls and vehicle fares
   renderBookingTabs();
   bindBookingFormEvents();
   setDefaultBookingDates();
-  calculateAndRenderVehicles();
+  bindVehicleSelectionEvents();
+  updateVehicleFares();
 }
 
 function setDefaultBookingDates() {
@@ -336,7 +329,7 @@ function renderBookingTabs() {
       tabReturn.classList.remove('bg-[#041F38]', 'text-white');
       tabReturn.classList.add('bg-slate-100', 'text-slate-600');
       if (returnDateField) returnDateField.classList.add('hidden');
-      calculateAndRenderVehicles();
+      updateVehicleFares();
     });
 
     tabReturn.addEventListener('click', () => {
@@ -346,7 +339,7 @@ function renderBookingTabs() {
       tabOneWay.classList.remove('bg-[#041F38]', 'text-white');
       tabOneWay.classList.add('bg-slate-100', 'text-slate-600');
       if (returnDateField) returnDateField.classList.remove('hidden');
-      calculateAndRenderVehicles();
+      updateVehicleFares();
     });
   }
 }
@@ -362,14 +355,14 @@ function bindBookingFormEvents() {
   if (pickupInput) {
     pickupInput.addEventListener('change', (e) => {
       bookingState.pickup = e.target.value;
-      calculateAndRenderVehicles();
+      updateVehicleFares();
     });
   }
 
   if (dropoffInput) {
     dropoffInput.addEventListener('change', (e) => {
       bookingState.dropoff = e.target.value;
-      calculateAndRenderVehicles();
+      updateVehicleFares();
     });
   }
 
@@ -388,14 +381,14 @@ function bindBookingFormEvents() {
   if (passSelect) {
     passSelect.addEventListener('change', (e) => {
       bookingState.passengers = parseInt(e.target.value) || 1;
-      calculateAndRenderVehicles();
+      updateVehicleFares();
     });
   }
 
   if (luggSelect) {
     luggSelect.addEventListener('change', (e) => {
       bookingState.luggage = parseInt(e.target.value) || 0;
-      calculateAndRenderVehicles();
+      updateVehicleFares();
     });
   }
 
@@ -406,7 +399,7 @@ function bindBookingFormEvents() {
       if (pickupInput && airportName) {
         pickupInput.value = airportName;
         bookingState.pickup = airportName;
-        calculateAndRenderVehicles();
+        updateVehicleFares();
       }
     });
   });
@@ -434,10 +427,9 @@ function estimateDistance(pickup, dropoff) {
   return 22;
 }
 
-function calculateAndRenderVehicles() {
-  const container = document.querySelector('#vehicles-list-container');
-  if (!container) return;
-
+function updateVehicleFares() {
+  const vehicleCards = document.querySelectorAll('#booking-step-vehicles .vehicle-card');
+  if (vehicleCards.length === 0) return;
   const distanceMiles = estimateDistance(bookingState.pickup, bookingState.dropoff);
   const isReturnMultiplier = bookingState.journeyType === 'return' ? 1.85 : 1.0;
 
@@ -447,63 +439,36 @@ function calculateAndRenderVehicles() {
     distanceBadge.textContent = `Estimated Distance: ~${distanceMiles} miles (${bookingState.journeyType === 'return' ? 'Return Journey' : 'One Way'})`;
   }
 
-  let html = '';
-  VEHICLES_DATA.forEach(v => {
-    const rawFare = (v.baseFare + (distanceMiles * v.perMile)) * isReturnMultiplier;
-    const finalFare = Math.round(rawFare);
-    const isSelected = v.id === bookingState.selectedVehicleId;
+  vehicleCards.forEach(card => {
+    const baseFare = Number(card.dataset.baseFare);
+    const perMile = Number(card.dataset.perMile);
+    const finalFare = Math.round((baseFare + (distanceMiles * perMile)) * isReturnMultiplier);
+    const fareElement = card.querySelector('.vehicle-fare');
+    const button = card.querySelector('.btn-select-vehicle');
+    const isSelected = card.dataset.vehicleId === bookingState.selectedVehicleId;
 
-    html += `
-      <div class="vehicle-card p-5 ${isSelected ? 'selected' : ''}" data-vehicle-id="${v.id}">
-        <div class="flex flex-col md:flex-row items-center gap-6">
-          <div class="w-full md:w-1/3 h-36 overflow-hidden rounded-lg bg-slate-100 flex items-center justify-center">
-            <img src="${v.img}" alt="${v.name}" class="w-full h-full object-cover rounded-lg transform hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div class="w-full md:w-2/3 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-4 mb-1">
-                <h4 class="text-xl font-bold text-[#041F38]">${v.name}</h4>
-                <div class="text-right">
-                  <span class="text-xs text-slate-500 uppercase tracking-wider block font-medium">Guaranteed Fare</span>
-                  <span class="text-2xl font-black text-[#041F38]">£${finalFare}</span>
-                </div>
-              </div>
-              <p class="text-sm text-slate-600 mb-3">${v.desc}</p>
-              <div class="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-700 mb-4">
-                <span class="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
-                  <svg class="w-4 h-4 text-[#041F38]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                  ${v.passengers} Passengers
-                </span>
-                <span class="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
-                  <svg class="w-4 h-4 text-[#041F38]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                  ${v.luggage} Cases
-                </span>
-                <span class="flex items-center gap-1.5 bg-emerald-50 text-emerald-800 px-3 py-1.5 rounded-md">
-                  ✓ Free Flight Tracking
-                </span>
-              </div>
-            </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-3">
-              <span class="text-xs text-slate-500 font-medium">Includes 60-min airport waiting time</span>
-              <button type="button" class="btn-select-vehicle px-5 py-2.5 text-xs font-bold tracking-wider uppercase rounded-lg transition-all ${isSelected ? 'bg-[#041F38] text-white shadow-md' : 'bg-slate-100 text-[#041F38] hover:bg-[#041F38] hover:text-white'}" data-vehicle-id="${v.id}">
-                ${isSelected ? 'Selected' : 'Select Vehicle'}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
+    if (fareElement) fareElement.textContent = `£${finalFare}`;
+    card.classList.toggle('selected', isSelected);
+    if (button) {
+      button.textContent = isSelected ? 'Selected' : 'Select Vehicle';
+      button.setAttribute('aria-pressed', String(isSelected));
+      button.classList.toggle('bg-[#041F38]', isSelected);
+      button.classList.toggle('text-white', isSelected);
+      button.classList.toggle('shadow-md', isSelected);
+      button.classList.toggle('bg-slate-100', !isSelected);
+      button.classList.toggle('text-[#041F38]', !isSelected);
+    }
   });
+}
 
-  container.innerHTML = html;
-
-  // Attach vehicle selection listeners
-  container.querySelectorAll('.btn-select-vehicle').forEach(btn => {
+function bindVehicleSelectionEvents() {
+  document.querySelectorAll('#booking-step-vehicles .btn-select-vehicle').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const vehicleId = btn.getAttribute('data-vehicle-id');
+      if (!vehicleId) return;
       bookingState.selectedVehicleId = vehicleId;
-      calculateAndRenderVehicles();
+      updateVehicleFares();
       openPassengerModal();
     });
   });
@@ -513,10 +478,14 @@ function openPassengerModal() {
   const modal = document.querySelector('#booking-confirm-modal');
   if (!modal) return;
 
-  const vehicle = VEHICLES_DATA.find(v => v.id === bookingState.selectedVehicleId) || VEHICLES_DATA[0];
+  const vehicleCard = document.querySelector(`#booking-step-vehicles .vehicle-card[data-vehicle-id="${bookingState.selectedVehicleId}"]`);
+  if (!vehicleCard) return;
+  const vehicleName = vehicleCard.querySelector('h4').textContent;
+  const baseFare = Number(vehicleCard.dataset.baseFare);
+  const perMile = Number(vehicleCard.dataset.perMile);
   const distanceMiles = estimateDistance(bookingState.pickup, bookingState.dropoff);
   const isReturnMultiplier = bookingState.journeyType === 'return' ? 1.85 : 1.0;
-  const finalFare = Math.round((vehicle.baseFare + (distanceMiles * vehicle.perMile)) * isReturnMultiplier);
+  const finalFare = Math.round((baseFare + (distanceMiles * perMile)) * isReturnMultiplier);
 
   // Update modal summary
   const summaryBox = modal.querySelector('#modal-summary-box');
@@ -533,7 +502,7 @@ function openPassengerModal() {
         </div>
         <div class="flex justify-between text-slate-600">
           <span>Selected Vehicle:</span>
-          <span class="font-semibold text-[#041F38]">${vehicle.name}</span>
+          <span class="font-semibold text-[#041F38]">${vehicleName}</span>
         </div>
         <div class="flex justify-between border-t border-slate-200 pt-2 text-base font-black text-[#041F38]">
           <span>Total Fare:</span>
