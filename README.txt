@@ -8,6 +8,7 @@ This version removes the React, TypeScript, Vite and build setup. It contains st
 - services.html
 - faq.html
 - blog.html
+- blog-details.html
 - contact.html
 - account.html
 
